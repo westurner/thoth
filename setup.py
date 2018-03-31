@@ -1,58 +1,47 @@
-import os
-import sys
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-argc = len(sys.argv)
+"""The setup script."""
 
-if (argc == 1):
-   print('Unknown option: please specify if you want to install or uninstall the package')
-   exit()
-elif (argc == 2):
-   option = str(sys.argv[1])
-   option = option.rstrip()
-   if (option == 'install'):
-      print('WARNING!!! Install THOTH package into default python directories')
-      command = 'python setup_cfg.py install'
-   elif (option == 'uninstall'):
-      try:
-         with open('installation_path.save'): 
-            pass
-            f = open('installation_path.save','r')
-            installation_path = f.readline()
-            f.close()
-            #print(installation_path)
-            os.system('rm -rf ' + installation_path)
-            os.system('rm -rf build/ installation_path.save')
-            print('Uninstall complete.')
-      except IOError:
-         exception_error = -1;
-         print("Cannot find 'installation_path.save'")
-   else:
-      print('ERROR!!! Unrecognized option')
-      exit()
-elif (argc == 3):
-   option = str(sys.argv[1])
-   option = option.rstrip()
-   if (option == 'install'):
-      installation_path = str(sys.argv[2])
-      installation_path = installation_path.rstrip()
-      print(installation_path)
-      print('Installation path: ' + installation_path)
-      command = 'python setup_cfg.py install --prefix=' + installation_path + ' --install-lib=' + installation_path + ' --install-platlib=' + installation_path + ' --install-scripts=' + installation_path + ' --install-data=' + installation_path
-      f = open('installation_path.save','w')
-      f.write(installation_path)
-      f.flush()
-      f.close()
-      #print(command)
-      os.system(command)
-   elif (option == 'uninstall'):
-      print('WARNING!!! Argument not used.')
-      f = open('installation_path.save','r')
-      installation_path = f.readline()
-      f.close()
-      #print(installation_path)
-      os.system('rm -rf ' + installation_path)
-      os.system('rm -rf build/ installation_path.save')
-      print('Uninstall complete.')
-   else:
-      print('ERROR!!! Unrecognized option')
-      exit()
+from setuptools import setup, find_packages
+
+with open('README.rst') as readme_file:
+    readme = readme_file.read()
+
+with open('HISTORY.rst') as history_file:
+    history = history_file.read()
+
+requirements = [ ]
+
+setup_requirements = [ ]
+
+test_requirements = [ ]
+
+setup(
+    author="Simon DeDeo",
+    author_email='sdedeo@andrew.cmu.edu',
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        "Programming Language :: Python :: 2",
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+    ],
+    description="a python package for the efficient estimation of information-theoretic quantities from empirical data",
+    install_requires=requirements,
+    long_description=readme + '\n\n' + history,
+    include_package_data=True,
+    keywords='thoth',
+    name='thoth',
+    packages=find_packages(include=['thoth']),
+    setup_requires=setup_requirements,
+    test_suite='tests',
+    tests_require=test_requirements,
+    url='https://github.com/simondedeo/thoth',
+    version='1.0.0',
+    zip_safe=False,
+)
