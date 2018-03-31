@@ -2,12 +2,10 @@
 Credits
 =======
 
-Development Lead
-----------------
-
-* Simon DeDeo <sdedeo@andrew.cmu.edu>
+* Participants: Simon DeDeo, Robert X. D. Hawkins, Sara Klingenstein. 
+* Programming consultant: Quan Minh Bui.
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+- Wes Turner <@westurner>
